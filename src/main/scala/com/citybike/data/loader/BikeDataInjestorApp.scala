@@ -27,7 +27,6 @@ object BikeDataInjestorApp extends App {
   //Publish the message as json to the kafka topic
   def publishMessageToKafka(stationData: Seq[Map[String, Any]]): Unit = {
     stationData.map(st => {
-      println(JsonObjectMapper.toJson(st))
       MsgPublisher.publishMessage(JsonObjectMapper.toJson(st))
 
     })

@@ -1,0 +1,4 @@
+# Trigger "city bike data" feed every 5 mins
+*/5 * * * * java -jar /home/ubuntu/app/bikedata-ingestor.jar > /dev/null 2>&1
+
+#grep CRON /var/log/syslog

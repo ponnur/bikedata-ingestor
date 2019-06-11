@@ -1,11 +1,11 @@
 import sbt.Keys._
 import sbt._
 
-name := "bike-data"
+name := "bikedata-ingestor"
 
 scalaVersion := "2.12.1"
 
-assemblyJarName in assembly := "bike-data.jar"
+assemblyJarName in assembly := "bikedata-ingestor.jar"
 
 libraryDependencies ++= Seq(
   "com.typesafe"                    % "config"                        % "1.2.0",

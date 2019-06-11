@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-pwd=${PWD##*/}
+#Build and publish the jar to the server
+
 sbt clean assembly
-mkdir ./assembly
-cp -rf target/scala-2.12/*.jar ./assembly
+scp target/scala-2.12/bikedata-ingestor.jar jbit:/home/ubuntu/app
 
-#scp file.txt username@to_host:/remote/directory/
-
+ssh jbit 'chmod +x /home/ubuntu/app/bikedata-ingestor.jar'
