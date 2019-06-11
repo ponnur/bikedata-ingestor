@@ -1,0 +1,44 @@
+{
+  "last_updated": 55,
+  "ttl": 10,
+  "data": {
+    "stations": [
+      {
+        "station_id": "3092",
+        "num_bikes_available": 3,
+        "num_ebikes_available": 0,
+        "num_bikes_disabled": 0,
+        "num_docks_available": 24,
+        "num_docks_disabled": 0,
+        "is_installed": 1,
+        "is_renting": 1,
+        "is_returning": 0,
+        "last_reported": 1560138958,
+        "eightd_has_available_keys": false,
+        "eightd_active_station_services": [
+          {
+            "id": "31421525-29e6-4af7-802e-dfea42e2771d"
+          }
+        ]
+      },
+      {
+        "station_id": "3347",
+        "num_bikes_available": 10,
+        "num_ebikes_available": 0,
+        "num_bikes_disabled": 1,
+        "num_docks_available": 10,
+        "num_docks_disabled": 0,
+        "is_installed": 1,
+        "is_renting": 1,
+        "is_returning": 0,
+        "last_reported": 1560135734,
+        "eightd_has_available_keys": false,
+        "eightd_active_station_services": [
+          {
+            "id": "56b96d9e-b189-4805-9d9a-f5d459d8b0e4"
+          }
+        ]
+      }
+    ]
+  }
+}
