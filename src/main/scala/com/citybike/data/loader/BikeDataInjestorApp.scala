@@ -7,6 +7,8 @@ import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.JsonMappingException
 
 
+//Logging. Test Cases. Design
+
 /*
   BikeDataInjestor retrieves the city bike data from the source data feed and publishes the station data in the feed
   as individual message to a kafka topic.
@@ -18,13 +20,11 @@ object BikeDataInjestorApp extends App {
 
   type JsonData = Seq[Map[String, Any]]
 
-  //  val sampleDataUrl = getClass().getClassLoader().getResource("data.json");
-
   val stationData = getStationData(Config.stationDataUrl)
   stationData.map(publishMessageToKafka(_))
 
 
-  //Publish the message as json to the kafka topic
+  //Publish the message as json to the kafka topic for each station
   def publishMessageToKafka(stationData: Seq[Map[String, Any]]): Unit = {
     stationData.map(st => {
       MsgPublisher.publishMessage(JsonObjectMapper.toJson(st))
@@ -33,7 +33,7 @@ object BikeDataInjestorApp extends App {
     println("Messages published to kafka  :" + stationData.size)
   }
 
-  //Retrieve the station data feed from the given url.
+  //Retrieve the station data feed from the given url. Filters the invalid data
   def getStationData(url: String): Option[JsonData] = {
     val jsonUrl: URL = new URL(url)
 
@@ -57,7 +57,7 @@ object BikeDataInjestorApp extends App {
     }
   }
 
-  //Validate the required fields
+  //Validate the mandatory fields for data processing
   def isValidStationData(json: Map[String, Any]): Boolean = {
     if (json.contains("station_id") && json.contains("num_bikes_available") && json.contains("num_docks_available")) {
       return true

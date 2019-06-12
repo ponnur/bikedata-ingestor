@@ -4,7 +4,7 @@
   "data": {
     "stations": [
       {
-        "station_id": "3092",
+        "station_id": "3001",
         "num_bikes_available": 3,
         "num_ebikes_available": 0,
         "num_bikes_disabled": 0,
@@ -22,7 +22,7 @@
         ]
       },
       {
-        "station_id": "3347",
+        "station_id": "3003",
         "num_bikes_available": 10,
         "num_ebikes_available": 0,
         "num_bikes_disabled": 1,
