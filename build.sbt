@@ -14,3 +14,8 @@ libraryDependencies ++= Seq(
   "org.apache.kafka"                % "kafka-clients"                 % "2.2.1"
 
 )
+
+
+//Test dependencies
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0-SNAP5" % Test
+libraryDependencies += "org.mockito" % "mockito-all" % "1.10.19" % Test

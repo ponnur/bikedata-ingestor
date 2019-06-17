@@ -2,9 +2,9 @@ package com.citybike.data.loader
 
 import org.apache.kafka.clients.producer._
 import java.util.Properties
-/**
-  * Created by ponnulingam on 6/8/19.
-  */
+
+
+//Kakfa message publisher to publish message to a kafka topic.
 object MsgPublisher {
 
   val producer = new KafkaProducer[String, String](kafkaProperties())

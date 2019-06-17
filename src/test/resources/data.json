@@ -23,7 +23,6 @@
       },
       {
         "station_id": "3347",
-        "num_bikes_available": 10,
         "num_ebikes_available": 0,
         "num_bikes_disabled": 1,
         "num_docks_available": 10,

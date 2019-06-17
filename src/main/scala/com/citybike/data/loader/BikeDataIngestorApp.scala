@@ -7,38 +7,37 @@ import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.JsonMappingException
 
 
-//Logging. Test Cases. Design
 
 /*
-  BikeDataInjestor retrieves the city bike data from the source data feed and publishes the station data in the feed
+  BikeDataIngestor retrieves the city bike data from the source data feed and publishes the station data in the feed
   as individual message to a kafka topic.
  */
-object BikeDataInjestorApp extends App {
+object BikeDataIngestorApp extends App {
 
-  println("Starting the bike data loader applcation")
+  println("Starting the bike data loader application")
   println(Config.toString())
 
   type JsonData = Seq[Map[String, Any]]
+  val feedURL: URL = new URL(Config.stationDataUrl)
 
-  val stationData = getStationData(Config.stationDataUrl)
+  val stationData = getStationData(feedURL)
   stationData.map(publishMessageToKafka(_))
 
 
   //Publish the message as json to the kafka topic for each station
   def publishMessageToKafka(stationData: Seq[Map[String, Any]]): Unit = {
     stationData.map(st => {
-      MsgPublisher.publishMessage(JsonObjectMapper.toJson(st))
+      MsgPublisher.publishMessage(JsonObjectMapper.toJsonString(st))
 
     })
     println("Messages published to kafka  :" + stationData.size)
   }
 
   //Retrieve the station data feed from the given url. Filters the invalid data
-  def getStationData(url: String): Option[JsonData] = {
-    val jsonUrl: URL = new URL(url)
+  def getStationData(feedURL: URL): Option[JsonData] = {
 
     try {
-      val dataFeed: DataFeed = JsonObjectMapper.mapper.readValue(jsonUrl, classOf[DataFeed])
+      val dataFeed: DataFeed = JsonObjectMapper.mapper.readValue(feedURL, classOf[DataFeed])
 
       println("Feed last updated Time:" + dataFeed.lastUpdated)
       println("Feed station count    :" + dataFeed.stationData.stations.size)
@@ -65,5 +64,7 @@ object BikeDataInjestorApp extends App {
     println("Missing require fields in the json")
     return false
   }
+
+
 
 }
